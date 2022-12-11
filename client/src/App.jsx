@@ -5,6 +5,14 @@ import getWeb3 from './getWeb3'
 import './App.css'
 import NewFundraiser from './NewFundraiser'
 import Home from './Home'
+import { styled } from '@mui/material/styles'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+
+const Root = styled('root')(({ theme }) => ({
+  flexGrow: 1,
+}))
 
 const App = () => {
   const [state, setState] = useState({
@@ -42,21 +50,23 @@ const App = () => {
 
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/new/">New</NavLink>
-            </li>
-          </ul>
-        </nav>
+      <Root>
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <Typography variant="h6" color="inherit">
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
+            </Typography>
+            <NavLink className="nav-link" to="/new/">
+              New
+            </NavLink>
+          </Toolbar>
+        </AppBar>
 
         <Route path="/" exact component={Home} />
         <Route path="/new/" component={NewFundraiser} />
-      </div>
+      </Root>
     </Router>
   )
 }
